@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
-    'todos',
+    'leave',
 ]
 
 REST_FRAMEWORK = {
@@ -65,7 +65,7 @@ CORS_ORIGIN_WHITELIST = (
     'localhost:3000/'
 )
 
-ROOT_URLCONF = 'todo_api.urls'
+ROOT_URLCONF = 'leave_api.urls'
 
 TEMPLATES = [
     {
@@ -83,7 +83,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'todo_api.wsgi.application'
+WSGI_APPLICATION = 'leave_api.wsgi.application'
 
 
 # Database
@@ -121,7 +121,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'MST'
 
 USE_I18N = True
 
