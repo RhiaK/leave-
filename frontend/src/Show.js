@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+import './App.css';
+import { Button } from 'reactstrap';
+
 
 class App extends Component {
   state = {
     todos: []
   };
+
 
   async componentDidMount() {
     try {
@@ -17,13 +22,17 @@ class App extends Component {
     }
   }
 
+   
   render() {
     return (
-      <div>
+      <div className="destlist">
         {this.state.todos.map(item => (
           <div key={item.id}>
-            <h1>{item.title}</h1>
-            <span>{item.description}</span>
+            <h6>{item.dest_title}</h6>
+            <Button
+            className="destbut">
+            Select
+            </Button>
           </div>
         ))}
       </div>
