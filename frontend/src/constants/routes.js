@@ -4,3 +4,4 @@ export const LANDING = '/'; //first non-protected page
 export const DASHBOARD = '/dashboard'; //protected route, can only access after auth
 export const PROFILE = '/profile';
 export const DESTINATIONS = '/destinations';
+export const SIGNOUT = './signout';

@@ -7,6 +7,7 @@ import SignInPage from './Signin';
 import Dashboard from './Dashboard';
 import Profile from './Profile';
 import Destinations from './Destinations';
+import SignOutButton from './Signout';
 
 import './App.css';
 
@@ -42,6 +43,10 @@ class App extends Component {
             <Route
               exact path={routes.DESTINATIONS}
               component={() => <Destinations />}
+            />
+            <Route
+              exact path={routes.SIGNOUT}
+              component={() => <SignOutButton />}
             />
           </div> 
         </Router>
