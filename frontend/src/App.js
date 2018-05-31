@@ -30,11 +30,13 @@ class App extends Component {
             <Route
               exact path={routes.SIGN_IN}
               component={() => <SignInPage />}
-            /> 
+            />
             <Route
               exact path={routes.DASHBOARD}
               component={() => <Dashboard />}
             />
+            {/* <PrivateRoute exact path="/secret" component={DogList} /> */}
+
             <Route
               exact path={routes.PROFILE}
               component={() => <Profile />}
@@ -43,9 +45,9 @@ class App extends Component {
               exact path={routes.DESTINATIONS}
               component={() => <Destinations />}
             />
-          </div> 
+          </div>
         </Router>
-      </div>  
+      </div>
     );
   }
 }

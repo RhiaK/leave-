@@ -15,8 +15,31 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from django.conf.urls import url, include
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('leave.urls')),
+    url(r'^auth/', include('rest_framework_social_oauth2.urls')),
+    url(r"^", include("github_social.urls")),
 ]
+
+urlpatterns += [
+    url(r'^api-auth/', include('rest_framework.urls')),
+]
+
+
+# from django.conf.urls import url, include
+# from django.contrib import admin
+
+# urlpatterns = [
+#     url(r'^admin/', admin.site.urls),
+#     url(r'^auth/', include('rest_framework_social_oauth2.urls')),
+#     url(r"^dogs/$", DogList.as_view()),
+#     url(r"^", include("github_social.urls")),
+# ]
+
+# urlpatterns += [
+#     url(r'^api-auth/', include('rest_framework.urls')),
+# ]
