@@ -3,16 +3,16 @@ from rest_framework.response import Response
 
 from knox.models import AuthToken
 
-from .serializers import (NoteSerializer, CreateUserSerializer,
+from .serializers import (LeaveSerializer, CreateUserSerializer,
                           UserSerializer, LoginUserSerializer)
 
 
-class NoteViewSet(viewsets.ModelViewSet):
+class LeaveViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated, ]
-    serializer_class = NoteSerializer
+    serializer_class = LeaveSerializer
 
     def get_queryset(self):
-        return self.request.user.notes.all()
+        return self.request.user.leaves.all()
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)

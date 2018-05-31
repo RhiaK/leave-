@@ -1,5 +1,5 @@
 import datetime
-from django.db import models
+from django.db import mnpodels
 from django.utils import timezone
 
 STATE_CHOICES = (
@@ -13,7 +13,7 @@ class Dest(models.Model):
 	dest_state = models.CharField(max_length=20, choices=STATE_CHOICES, default='state')
 	dest_zipcode = models.IntegerField()
 	dest_time = models.TimeField(auto_now=False, auto_now_add=False)
-	
+
 class User(models.Model):
 	username = models.CharField(max_length=50)
 	email = models.CharField(max_length=50)
@@ -23,3 +23,18 @@ class User(models.Model):
 
 	def __str__(self):
 		return self.dest_title
+
+
+
+from django.db import models
+from django.contrib.auth.models import User
+
+
+class Note(models.Model):
+    text = models.CharField(max_length=255)
+    owner = models.ForeignKey(User, related_name="notes", on_delete=models.CASCADE,
+                              null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.text
