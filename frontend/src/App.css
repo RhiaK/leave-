@@ -205,6 +205,43 @@ h5 {
   }  
 } 
 
+@media (max-width: 900px){
+  .destlist {
+    margin-top: -210px;
+    margin-left: 350px;
+  }
+}
+
+@media (min-width: 901px){ 
+  .destlist {
+    margin-top: -200px;
+    margin-left: 660px;
+  }
+}  
+
+@media (max-width: 900px){
+  .destbut {
+    margin-top: -55px;
+    margin-right: -350px;
+  }
+}
+
+@media (min-width: 901px){ 
+  .destbut {
+    margin-top: -55px;
+    margin-right: -350px;
+  }
+}     
+
+.destlist {
+  color: white;
+  position: absolute;
+  background-color: rgba(36, 38, 40, 0.8);
+  padding-top: 25px;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
 .text {
   margin-top: 50px;
   background-color: #242628;
