@@ -37,7 +37,7 @@ class Dest extends Component {
   }
 
   componentDidMount(){
-    console.log(process.env.REACT_APP_GOOGLE_MAPS_API_KEY)
+    
     axios.get('http://127.0.0.1:8000/').then((response)=>{
       console.log(response)
     })
