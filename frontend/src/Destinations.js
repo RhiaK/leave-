@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
 import Navigation from './Navigation';
-import Show from './Show';
+//import Show from './Show';
+import { GoogleApiWrapper, Map , InfoWindow, Marker } from 'google-maps-react';
+
 import {
     Container,
     Row,
@@ -14,6 +16,73 @@ import {
 
 
 class Dest extends Component {
+
+  constructor() {
+    super()
+    this.state = {
+      location: "",
+      distance1: '',
+    }
+    this.onInputChange = this.onInputChange.bind(this)
+    this.onFormSubmit = this.onFormSubmit.bind(this)
+  }
+
+  onInputChange(event){
+    this.setState({
+      [event.target.name]: event.target.value,
+    })
+    
+  }
+
+  componentDidMount(){
+    console.log(process.env.REACT_APP_GOOGLE_MAPS_API_KEY)
+  }
+
+  onFormSubmit(event) {
+    event.preventDefault()
+    console.log(this.state)
+    this.setState({
+      location: event.target.value,
+//      distance: rows.elements.distance,
+    })
+    this.distanceOf(['Denver, CO, USA'], [this.state.location])
+  }
+
+  componentDidUpdate(event) {
+//    this.distanceOf(['Denver, CO, USA'], [this.state.location])
+  }
+
+  distanceOf(origin, destination) {
+    console.log(this.props)
+    const {google} = this.props;
+    let service = new google.maps.DistanceMatrixService();
+    service.getDistanceMatrix({
+      origins: origin,
+      destinations: destination,
+      travelMode: google.maps.TravelMode.DRIVING,
+      unitSystem: google.maps.UnitSystem.IMPERIAL,
+      avoidHighways: false,
+      avoidTolls: false
+    },  (res, status) => {
+      console.log(status)
+      if (status === 'OK') {
+        console.log(res)
+        const distance = res.rows[0].elements[0].distance.text
+        console.log(distance)
+        this.setState({
+        location: '',
+        distance1: distance,
+    })
+      } else {
+        
+        const distance = res.rows[0].elements[0].distance
+        console.log(distance)
+      }
+    })
+  }
+
+
+
   render() {
     return (
       <div className="App img2">
@@ -27,16 +96,18 @@ class Dest extends Component {
         <Container>
           <Row>
             <Col>
-              <Form className="locform">
+              <Form className="locform" onSubmit={this.onFormSubmit}>
                 <Row className="justify-content-center">    
                   <FormGroup>
                     <Col sm="12">
                       <Input
                         className="locwide" 
                         type="locname"
-                        name="dest_title"
+                        name="location"
                         id="dest_title"
                         placeholder="Name your destination"
+                        value={this.state.lat}
+                        onChange={ this.onInputChange }
                       />
                     </Col>
                   </FormGroup>
@@ -157,7 +228,9 @@ class Dest extends Component {
             </Col>                         
           </Row>
         </Container>
-          <Show />
+          <div>
+            <h1 id='example'>{this.state.distance1}</h1>
+          </div>  
         <Container className="foot">  
           <Row className="justify-content-center">
             <Col>
@@ -172,4 +245,6 @@ class Dest extends Component {
   }
 }
 
-export default Dest;
+export default GoogleApiWrapper({
+  apiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+})(Dest)

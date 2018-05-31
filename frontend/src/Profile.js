@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Navigation from './Navigation';
+import axios from 'axios'
 import {
     Container,
     Row,
@@ -10,6 +11,8 @@ import {
     FormGroup,
     Input
 } from 'reactstrap';
+
+axios
 
 
 class Profile extends Component {
