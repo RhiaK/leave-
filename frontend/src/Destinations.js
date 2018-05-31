@@ -3,7 +3,7 @@ import './App.css';
 import Navigation from './Navigation';
 //import Show from './Show';
 import { GoogleApiWrapper, Map , InfoWindow, Marker } from 'google-maps-react';
-
+import axios from 'axios'
 import {
     Container,
     Row,
@@ -21,10 +21,12 @@ class Dest extends Component {
     super()
     this.state = {
       location: "",
-      distance1: '',
+      length: '',
     }
     this.onInputChange = this.onInputChange.bind(this)
     this.onFormSubmit = this.onFormSubmit.bind(this)
+    this.distanceOf = this.distanceOf.bind(this)
+
   }
 
   onInputChange(event){
@@ -36,21 +38,32 @@ class Dest extends Component {
 
   componentDidMount(){
     console.log(process.env.REACT_APP_GOOGLE_MAPS_API_KEY)
+    axios.get('http://127.0.0.1:8000/').then((response)=>{
+      console.log(response)
+    })
   }
 
   onFormSubmit(event) {
     event.preventDefault()
     console.log(this.state)
     this.setState({
-      location: event.target.value,
+      location: event.target.value
 //      distance: rows.elements.distance,
     })
-    this.distanceOf(['Denver, CO, USA'], [this.state.location])
+    let destination = this.state.location
+    let self = this;
+    axios.get('http://127.0.0.1:8000/').then((response)=>{
+      console.log(self)
+      
+      
+
+      let location = response.data[0].dest_city
+      this.distanceOf([response.data[0].dest_city], [destination])
+    })
+
   }
 
-  componentDidUpdate(event) {
-//    this.distanceOf(['Denver, CO, USA'], [this.state.location])
-  }
+  
 
   distanceOf(origin, destination) {
     console.log(this.props)
@@ -67,11 +80,11 @@ class Dest extends Component {
       console.log(status)
       if (status === 'OK') {
         console.log(res)
-        const distance = res.rows[0].elements[0].distance.text
+        const distance = res.rows[0].elements[0].duration.text
         console.log(distance)
         this.setState({
         location: '',
-        distance1: distance,
+        length: distance,
     })
       } else {
         
@@ -228,8 +241,8 @@ class Dest extends Component {
             </Col>                         
           </Row>
         </Container>
-          <div>
-            <h1 id='example'>{this.state.distance1}</h1>
+          <div id="someData">
+            <h1 id='example'>{this.state.length}</h1>
           </div>  
         <Container className="foot">  
           <Row className="justify-content-center">
