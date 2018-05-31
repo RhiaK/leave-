@@ -4,7 +4,7 @@ import os
 account_sid = os.environ.get('TWILIO_ACCOUNT_SID')
 auth_token  = os.environ.get('TWILIO_AUTH_TOKEN')
 twilio_phone = "+17193236514"
-user_phone = "+17193298921"
+user_phone = ""
 
 client = Client(account_sid, auth_token)
 
