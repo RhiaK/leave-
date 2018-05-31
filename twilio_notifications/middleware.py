@@ -24,7 +24,7 @@ def load_users_file():
 def load_twilio_config():
     twilio_account_sid = os.environ.get('TWILIO_ACCOUNT_SID')
     twilio_auth_token = os.environ.get('TWILIO_AUTH_TOKEN')
-    twilio_number = os.environ.get('TWILIO_NUMBER')
+    twilio_number = 17193236514
 
     if not all([twilio_account_sid, twilio_auth_token, twilio_number]):
         logger.error(NOT_CONFIGURED_MESSAGE)
