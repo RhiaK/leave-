@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import LandingPage from './Landing';
 import SignUpPage from './Signup';
@@ -7,6 +7,22 @@ import SignInPage from './Signin';
 import Dashboard from './Dashboard';
 import Profile from './Profile';
 import Destinations from './Destinations';
+
+import ReactDOM from "react-dom";
+import { createStore, applyMiddleware } from "redux";
+import thunk from "redux-thunk";
+import logger from "redux-logger";
+import { Provider } from "react-redux";
+import { composeWithDevTools } from "redux-devtools-extension";
+
+import Home from "./containers/HomeContainer";
+import Navbar from "./containers/NavbarContainer";
+import DogList from "./containers/Secret/DogListContainer";
+import { PrivateRoute } from "./customRoutes/ProtectedRoutes";
+import rootReducer from "./reducers";
+import auth_tokens_mw from "./customMiddleware/auth_tokens_mw";
+
+
 
 import './App.css';
 
