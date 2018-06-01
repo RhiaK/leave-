@@ -11,6 +11,6 @@ client = Client(account_sid, auth_token)
 message = client.messages.create(
     to=user_phone, 
     from_=twilio_phone,
-    body="You should leave within the next 15 minutes to reach your destination by the selected arrival time")
+    body="You should dests within the next 15 minutes to reach your destination by the selected arrival time")
 
 print(message.sid)

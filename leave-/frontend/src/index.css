@@ -1,6 +1,2 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'PT Sans Caption', sans-serif;
-}
-
+/*@import url("css/normalize.css");*/
+@import url("css/sakura.css");
